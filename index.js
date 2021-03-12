@@ -8,7 +8,7 @@
 module.exports = (app) => {
   // Your code here
   app.log.info("Yay, the app was loaded!");
-  app.on("push", async (context) => {
+  app.onAny(async (context) => {
       app.log.info(context.payload);
     }
   );
