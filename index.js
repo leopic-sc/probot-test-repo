@@ -6,17 +6,25 @@
  * @param {import('probot').Probot} app
  */
 module.exports = (app) => {
-  // Your code here
-  app.log.info("Yay, the app was loaded!");
-  app.onAny(async (context) => {
-		  app.log.info(context.payload.pull_request.number);
-		  // app.log.info(context.payload);
-		  // app.log.info(Object.keys(context.octokit.pulls.));
-		  app.log.info(context.octokit.pulls.listFiles());
-    }
-  );
+	// Your code here
+	app.log.info("Yay, the app was loaded!");
+	app.onAny(async (context) => {
+			app.log.info(context.payload.pull_request.number);
+			const files = await octokit.pulls.listFiles({
+					owner,
+					repo,
+					pull_number,
+					per_page: 100
+					})
 
-  // To get your app running against GitHub, see:
-  // https://probot.github.io/docs/development/
+			app.log.info(files);
+			const changedFiles = files.data.map((f) => f.filename)
+			app.log.info(changedFiles);
+
+			}
+		 );
+
+	// To get your app running against GitHub, see:
+	// https://probot.github.io/docs/development/
 };
 
