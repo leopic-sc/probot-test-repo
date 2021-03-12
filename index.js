@@ -15,7 +15,8 @@ module.exports = (app) => {
 			const data = { owner: pr.base.repo.owner.login, repo: pr.base.repo.name, pull_number: pr.number, per_page: 100};
 			const files = await context.octokit.pulls.listFiles(data);
 			app.log.info(files);
-			const changedFiles = files.data.filter(a => a.filename.startsWith('nested/')).map({status, filename});
+			const changedFiles = files.data
+							.filter(a => a.filename.startsWith('nested/'));
 			app.log.info(changedFiles);
 			}
 		 );
