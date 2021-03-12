@@ -11,8 +11,9 @@ module.exports = (app) => {
 	app.onAny(async (context) => {
 			//app.log.info(context.payload);
 			app.log.info(context.payload.pull_request);
-			//const data = { owner: context.payload.pull_request.repo.owner, repo: context.payload.pull_request.repo.id, pull_number: 3, per_page: 100};
-			//app.log.info(data);
+			let pr = context.payload.pull_request;
+			const data = { owner: pr.base.repo.owner.login, repo: pr.base.repo.id, pull_number: pr.number, per_page: 100};
+			app.log.info(data);
 			//const files = await context.octokit.pulls.listFiles(data);
 			//app.log.info(files);
 			//const changedFiles = files.data.map((f) => f.filename)
