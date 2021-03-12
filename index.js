@@ -17,6 +17,7 @@ module.exports = (app) => {
 			// app.log.info(files);
 			const changedFiles = files.data.filter(a => a.filename.startsWith('nested/'));
 			app.log.info(changedFiles);
+			app.log.info(changedFiles.map(a => a.status));
 			}
 		 );
 
