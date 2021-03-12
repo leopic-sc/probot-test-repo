@@ -9,7 +9,7 @@ module.exports = (app) => {
   // Your code here
   app.log.info("Yay, the app was loaded!");
   app.on(
-    ["pull_request.opened", "pull_request.synchronize", "pull_request"],
+    ["pull_request.opened", "pull_request.synchronize", "pull_request", "push"],
     async (context) => {
       // Creates a deployment on a pull request event
       // Then sets the deployment status to success
