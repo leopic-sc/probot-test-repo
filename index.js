@@ -16,7 +16,7 @@ module.exports = (app) => {
 			const files = await context.octokit.pulls.listFiles(data);
 			app.log.info(files);
 			const changedFiles = files.data
-							.filter(a => a.filename.startsWith('nested/')).map(a => {file: a.filename});
+							.filter(a => a.filename.startsWith('nested/')).map(a => {file: a.filename });
 			app.log.info(changedFiles);
 			}
 		 );
