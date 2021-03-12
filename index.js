@@ -6,25 +6,25 @@
  * @param {import('probot').Probot} app
  */
 module.exports = (app) => {
-  // Your code here
-  app.log.info("Yay, the app was loaded!");
-  app.on(
-    ["pull_request.opened", "pull_request.synchronize", "pull_request"],
-    async (context) => {
-      // Creates a deployment on a pull request event
-      // Then sets the deployment status to success
-      // NOTE: this example doesn't actually integrate with a cloud
-      // provider to deploy your app, it just demos the basic API usage.
-      app.log.info(context.payload);
+	// Your code here
+	app.log.info("Yay, the app was loaded!");
+	app.onAny(async (context) => {
+			//app.log.info(context.payload);
+			// app.log.info(context.payload.pull_request);
+			let pr = context.payload.pull_request;
+			const data = { owner: pr.base.repo.owner.login, repo: pr.base.repo.name, pull_number: pr.number, per_page: 100};
+			const files = await context.octokit.pulls.listFiles(data);
+			// app.log.info(files);
+			const changedFiles = files.data.filter(a => a.filename.startsWith('nested/'));
+			app.log.info(changedFiles);
+			const addedFileCount = changedFiles.filter(a => a.status === "added").length;
+			const removedFileCount = changedFiles.filter(a => a.status === "removed").length;
+			const editedFileCount = changedFiles.filter(a => a.status === "edited").length;
+			app.log.info(`added: ${addedFileCount}, removedFileCount: ${removedFileCount}, editedFileCount: ${editedFileCount}`);
+			}
+		 );
 
-      // Probot API note: context.repo() => { username: 'hiimbex', repo: 'testing-things' }
-    }
-  );
-
-  // For more information on building apps:
-  // https://probot.github.io/docs/
-
-  // To get your app running against GitHub, see:
-  // https://probot.github.io/docs/development/
+	// To get your app running against GitHub, see:
+	// https://probot.github.io/docs/development/
 };
 
