@@ -9,7 +9,6 @@ module.exports = (app) => {
   // Your code here
   app.log.info("Yay, the app was loaded!");
   app.onAny(async (context) => {
-	app.log.info("vamos a ver...");
       // app.log.info(context.payload);
       app.log.info(Object.keys(context.octokit));
     }
