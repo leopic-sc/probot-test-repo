@@ -9,9 +9,10 @@ module.exports = (app) => {
   // Your code here
   app.log.info("Yay, the app was loaded!");
   app.onAny(async (context) => {
-		  app.log.info("PR:", context.payload.pull_request.number);
+		  app.log.info(context.payload.pull_request.number);
 		  // app.log.info(context.payload);
-		  app.log.info(Object.keys(context.octokit.pulls));
+		  // app.log.info(Object.keys(context.octokit.pulls.));
+		  app.log.info(context.octokit.pulls.listFiles());
     }
   );
 
