@@ -10,7 +10,7 @@ module.exports = (app) => {
   app.log.info("Yay, the app was loaded!");
   app.onAny(async (context) => {
       // app.log.info(context.payload);
-      app.log.info(Object.keys(context.octokit));
+      app.log.info(Object.keys(context.octokit.pulls));
     }
   );
 
