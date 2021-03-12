@@ -18,6 +18,7 @@ module.exports = (app) => {
       app.log.info(context.payload);
 
       // Probot API note: context.repo() => { username: 'hiimbex', repo: 'testing-things' }
+	/*
       const res = await context.octokit.repos.createDeployment(
         context.repo({
           ref: context.payload.pull_request.head.ref, // The ref to deploy. This can be a branch, tag, or SHA.
@@ -44,7 +45,7 @@ module.exports = (app) => {
           environment_url: "https://example.com", // Sets the URL for accessing your environment.
           auto_inactive: true, // Adds a new inactive status to all prior non-transient, non-production environment deployments with the same repository and environment name as the created status's deployment. An inactive status is only added to deployments that had a success state.
         })
-      );
+      );*/
     }
   );
 
