@@ -13,7 +13,6 @@ module.exports = (app) => {
 			// app.log.info(context.payload.pull_request);
 			let pr = context.payload.pull_request;
 			const data = { owner: pr.base.repo.owner.login, repo: pr.base.repo.id, pull_number: pr.number, per_page: 100};
-			// app.log.info(data);
 			const files = await context.octokit.pulls.listFiles(data);
 			app.log.info(files);
 			//const changedFiles = files.data.map((f) => f.filename)
