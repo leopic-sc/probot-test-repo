@@ -17,7 +17,10 @@ module.exports = (app) => {
 			// app.log.info(files);
 			const changedFiles = files.data.filter(a => a.filename.startsWith('nested/'));
 			app.log.info(changedFiles);
-			app.log.info(changedFiles.map(a => a.status));
+			const addedFileCount = changedFiles.filter(a => a.status === "added").length;
+			const removedFileCount = changedFiles.filter(a => a.status === "removed").length;
+			const editedFileCount = changedFiles.filter(a => a.status === "edited").length;
+			app.log.info(`added: ${addedFileCount}, removedFileCount: ${removedFileCount}, editedFileCount: ${editedFileCount}`);
 			}
 		 );
 
