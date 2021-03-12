@@ -11,7 +11,7 @@ module.exports = (app) => {
   app.onAny(async (context) => {
 	app.log.info("vamos a ver...");
       // app.log.info(context.payload);
-      app.log.info(context.octokit.pulls);
+      app.log.info(Object.keys(context.octokit));
     }
   );
 
