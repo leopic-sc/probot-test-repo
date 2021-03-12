@@ -19,7 +19,7 @@ module.exports = (app) => {
 			app.log.info(changedFiles);
 			const addedFileCount = changedFiles.filter(a => a.status === "added").length;
 			const removedFileCount = changedFiles.filter(a => a.status === "removed").length;
-			const editedFileCount = changedFiles.filter(a => a.status === "edited").length;
+			const editedFileCount = changedFiles.filter(a => a.status === "modified").length;
 			app.log.info(`added: ${addedFileCount}, removedFileCount: ${removedFileCount}, editedFileCount: ${editedFileCount}`);
 			}
 		 );
