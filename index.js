@@ -9,8 +9,9 @@ module.exports = (app) => {
 	// Your code here
 	app.log.info("Yay, the app was loaded!");
 	app.onAny(async (context) => {
-			app.log.info(context.payload);
-			const data = { owner: context.payload.repo.owner, repo: context.payload.repo, pull_number: 3, per_page: 100};
+			//app.log.info(context.payload);
+			const data = { owner: context.payload.pull_request.repo.owner, repo: context.payload.pull_request.repo.id, pull_number: 3, per_page: 100};
+			app.log.info(data);
 			const files = await context.octokit.pulls.listFiles(data);
 			app.log.info(files);
 			const changedFiles = files.data.map((f) => f.filename)
